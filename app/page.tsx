@@ -7,6 +7,7 @@ import { SelectedCarAmountContext } from "@/context/SelectedCarAmountContext";
 import { SourceCordiContext } from "@/context/SourceCordiContext";
 import { UserLocationContext } from "@/context/UserLocationContext";
 import { UserButton } from "@clerk/nextjs";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -30,6 +31,10 @@ export default function Home() {
       }
     );
   }, []);
+
+  const MapboxMap = dynamic(
+  () => import('@/components/Map/MapboxMap'),
+  { ssr: false }
 
   return (
     <div>
