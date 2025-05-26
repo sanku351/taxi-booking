@@ -1,6 +1,5 @@
 "use client"
 import Booking from "@/components/Booking/Booking";
-import MapboxMap from "@/components/Map/MapboxMap";
 import { DestinationCordiContext } from "@/context/DestinationCordiContext";
 import { DirectionDataContext } from "@/context/DirectionDataContext";
 import { SelectedCarAmountContext } from "@/context/SelectedCarAmountContext";
@@ -10,6 +9,11 @@ import { UserButton } from "@clerk/nextjs";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+
+const MapboxMap = dynamic(
+  () => import('@/components/Map/MapboxMap'),
+  { ssr: false }
+)
 
 export default function Home() {
   const [userLocation, setUserLocation] = useState<any>();
@@ -31,10 +35,6 @@ export default function Home() {
       }
     );
   }, []);
-
-  const MapboxMap = dynamic(
-  () => import('@/components/Map/MapboxMap'),
-  { ssr: false }
 
   return (
     <div>
